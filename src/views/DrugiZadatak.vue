@@ -7,6 +7,7 @@
 					<v-card-text>
 						<v-data-table :headers="zaglavlje" item-key="">
 							<template v-slot:[`item.actions`]="{ item }">
+								<div>{{ item }}</div>
 								<v-icon dense>mdi-open-in-app</v-icon>
 							</template>
 						</v-data-table>
@@ -17,6 +18,7 @@
 					<v-card-text>
 						<v-data-table :headers="zaglavlje" item-key="">
 							<template v-slot:[`item.actions`]="{ item }">
+								<div>{{ item }}</div>
 								<v-icon dense>mdi-open-in-app</v-icon>
 							</template>
 						</v-data-table>
@@ -39,7 +41,20 @@ export default {
 	data() {
 		return {
 			zaglavlje: zaglavlje,
+			zadovoljili: [],
+			nisuZadovoljili: [],
+			sviStudenti: []
 		};
 	},
+	methods: {
+		loadajStudente(){
+			let studenti = JSON.parse(localStorage.getItem("studenti"));
+			if (studenti && studenti.length>0) {
+				this.sviStudenti = [...studenti];
+				this.zadovoljili = [...studenti];
+				this.nisuZadovoljili = [...studenti];
+		}
+	}
+}
 };
 </script>

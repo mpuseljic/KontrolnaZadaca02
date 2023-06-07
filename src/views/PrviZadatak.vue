@@ -102,7 +102,6 @@ export default {
 			rezultatiPrvogKolokvija: null,
 			rezultatiDrugogKolokvija: null,
 			kontinuiranoPracenje: null,
-			isButtonDisabled: false,
 			rules: {
 				required: (value) => !!value || "Required.",
 			},
@@ -116,6 +115,12 @@ export default {
 				this.isButtonDisabled = false;
 			}
 		},
+	},
+	computed:{
+		isButtonDisabled(){
+			return!(this.firstName && this.lastName && this.rezultatiPrvogKolokvija && this.rezultatiDrugogKolokvija && this.kontinuiranoPracenje)
+		}
+		
 	},
 	methods: {
 		ocistiFormu() {
