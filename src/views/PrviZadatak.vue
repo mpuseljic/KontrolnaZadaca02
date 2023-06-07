@@ -7,7 +7,7 @@
 					<v-card-text>
 						<v-form v-model="valid">
 							<v-text-field
-								v-model="firstName"
+								v-model="ime"
 								dense
 								label="Ime"
 								clearble
@@ -15,7 +15,7 @@
 								type="text"
 								outlined></v-text-field>
 							<v-text-field
-								v-model="lastName"
+								v-model="prezime"
 								dense
 								label="Prezime"
 								clearble
@@ -32,7 +32,7 @@
 							
 								outlined></v-text-field>
 							<v-text-field
-								v-model="rezultatiPrvogKolokvija"
+								v-model="prviKolokvij"
 								dense
 								label="Rezultati prvog kolokvija(maksimalno 40 bodova)"
 								clearble
@@ -41,7 +41,7 @@
 								
 								outlined></v-text-field>
 							<v-text-field
-								v-model="rezultatiDrugogKolokvija"
+								v-model="drugiKolokvij"
 								dense
 								label="Rezultati drugog kolokvija(maksimalno 40 bodova)"
 								clearble
@@ -98,11 +98,11 @@ export default {
 	name: "prvi-zadatak",
 	data() {
 		return {
-			firstName: null,
-			lastName: null,
+			ime: null,
+			prezime: null,
 			brojDolazaka: null,
-			rezultatiPrvogKolokvija: null,
-			rezultatiDrugogKolokvija: null,
+			prviKolokvij: null,
+			drugiKolokvij: null,
 			kontinuiranoPracenje: null,
 			rules: {
 				required: (value) => !!value || "Required.",
@@ -117,7 +117,7 @@ export default {
 					if(value<5)
 						return "Not valid."
 				},
-				
+
 			},
 		};
 	},
@@ -132,22 +132,28 @@ export default {
 	},
 	computed:{
 		isButtonDisabled(){
-			return!(this.firstName && this.lastName && this.rezultatiPrvogKolokvija && this.rezultatiDrugogKolokvija && this.kontinuiranoPracenje)
+			return!(this.ime && this.prezime && this.prviKolokvij && this.drugiKolokvij&& this.kontinuiranoPracenje)
 		}
 		
 	},
 	methods: {
 		ocistiFormu() {
-			this.firstName = null;
-			this.lastName = null;
+			this.ime = null;
+			this.prezime = null;
 			this.brojDolazaka = null;
-			this.rezultatiPrvogKolokvija = null;
-			this.rezultatiDrugogKolokvija = null;
+			this.prviKolokvij = null;
+			this.drugiKolokvij = null;
 			this.kontinuiranoPracenje = null;
 		},
 		dodajStudenta() {
 			let noviStudent = {
-				
+				ime: this.ime,
+				prezime: this.prezime,
+				brojDolazaka: this.brojDolazaka,
+				prviKolokvij: this.prviKolokvij,
+				drugiKolokvij: this.drugiKolokvij,
+				kontinuiranoPracenje: this.kontinuiranoPracenje
+
 			};
 			//ovo ne diraj
 			let studenti = JSON.parse(localStorage.getItem("studenti"));
