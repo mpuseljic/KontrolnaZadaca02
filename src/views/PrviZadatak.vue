@@ -5,7 +5,60 @@
 				<v-card class="pa-3" outlined width="600px">
 					<v-card-title>Dodaj studenta</v-card-title>
 					<v-card-text>
-						<v-form></v-form>
+						<v-form v-model="valid">
+							<v-text-field
+								v-model="firstName"
+								dense
+								label="Ime"
+								clearble
+								:rules="[rules.required]"
+								type="text"
+								outlined></v-text-field>
+							<v-text-field
+								v-model="lastName"
+								dense
+								label="Prezime"
+								clearble
+								:rules="[rules.required]"
+								type="text"
+								outlined></v-text-field>
+							<v-text-field
+								v-model="brojDolazaka"
+								dense
+								label="Broj dolazaka (maksimalno 15)"
+								clearble
+								:rules="[rules.required]"
+								type="text"
+							
+								outlined></v-text-field>
+							<v-text-field
+								v-model="rezultatiPrvogKolokvija"
+								dense
+								label="Rezultati prvog kolokvija(maksimalno 40 bodova)"
+								clearble
+								:rules="[rules.required]"
+								type="text"
+								
+								outlined></v-text-field>
+							<v-text-field
+								v-model="rezultatiDrugogKolokvija"
+								dense
+								label="Rezultati drugog kolokvija(maksimalno 40 bodova)"
+								clearble
+								:rules="[rules.required]"
+								type="text"
+								
+								outlined></v-text-field>
+							<v-text-field
+								v-model="kontinuiranoPracenje"
+								dense
+								label="Kontinuirano pracenje(maksimalno 20 bodova)"
+								clearble
+								:rules="[rules.required]"
+								type="text"
+			
+								outlined></v-text-field>
+						</v-form>
 					</v-card-text>
 					<v-card-actions>
 						<v-btn
@@ -15,8 +68,25 @@
 							@click="obrisiSveUnesenePodatke">
 							BRISI PODATKE
 						</v-btn>
+
+						<v-card-actions class="card-actions">
+						<v-btn
+							class="btn-right-margin"
+							@click="ocistiFormu"
+							color="red darken-3"
+							outlined>
+							CLEAR
+						</v-btn>
+						<v-btn
+							:disabled="isButtonDisabled"
+							outlined
+							@click="dodajStudenta"
+							>
+							OK
+						</v-btn>
 						<v-spacer></v-spacer>
 					</v-card-actions>
+				</v-card-actions>
 				</v-card>
 			</v-col>
 		</v-row>
@@ -27,11 +97,37 @@
 export default {
 	name: "prvi-zadatak",
 	data() {
-		return {};
+		return {
+			firstName: null,
+			lastName: null,
+			brojDolazaka: null,
+			rezultatiPrvogKolokvija: null,
+			rezultatiDrugogKolokvija: null,
+			kontinuiranoPracenje: null,
+			isButtonDisabled: false,
+			rules: {
+				required: (value) => !!value || "Required.",
+			},
+		};
 	},
-	watch: {},
+	watch: {
+		valid: function (newVal) {
+			if (newVal != true) {
+				this.isButtonDisabled = true;
+			} else {
+				this.isButtonDisabled = false;
+			}
+		},
+	},
 	methods: {
-		ocistiFormu() {},
+		ocistiFormu() {
+			this.firstName = null;
+			this.lastName = null;
+			this.brojDolazaka = null;
+			this.rezultatiPrvogKolokvija = null;
+			this.rezultatiDrugogKolokvija = null;
+			this.kontinuiranoPracenje = null;
+		},
 		dodajStudenta() {
 			let noviStudent = {
 				//Dodaj propertyje
@@ -47,6 +143,17 @@ export default {
 		obrisiSveUnesenePodatke() {
 			localStorage.clear();
 		},
+
+	
 	},
 };
 </script>
+
+<style>
+.card-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+</style>
