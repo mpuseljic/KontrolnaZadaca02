@@ -55,6 +55,11 @@ export default {
 				this.nisuZadovoljili = [...studenti];
 		}
 	}
+
+},
+computed() {
+	this.loadajStudente()
 }
+
 };
 </script>
