@@ -132,7 +132,7 @@ export default {
 	},
 	computed:{
 		isButtonDisabled(){
-			return!(this.ime && this.prezime && this.prviKolokvij && this.drugiKolokvij&& this.kontinuiranoPracenje)
+			return!(this.ime && this.prezime && this.brojDolazaka && this.prviKolokvij && this.drugiKolokvij&& this.kontinuiranoPracenje)
 		}
 		
 	},
