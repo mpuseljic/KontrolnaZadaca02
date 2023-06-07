@@ -142,6 +142,7 @@ export default {
 			}
 			studenti.push(noviStudent);
 			localStorage.setItem("studenti", JSON.stringify(studenti));
+			this.ocistiFormu();
 		},
 		obrisiSveUnesenePodatke() {
 			localStorage.clear();
