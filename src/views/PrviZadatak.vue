@@ -69,7 +69,6 @@
 							BRISI PODATKE
 						</v-btn>
 
-						<v-card-actions class="card-actions">
 						<v-btn
 							class="btn-right-margin"
 							@click="ocistiFormu"
@@ -86,7 +85,6 @@
 						</v-btn>
 						<v-spacer></v-spacer>
 					</v-card-actions>
-				</v-card-actions>
 				</v-card>
 			</v-col>
 		</v-row>
