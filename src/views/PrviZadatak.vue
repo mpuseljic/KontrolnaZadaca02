@@ -3,7 +3,7 @@
 		<v-row>
 			<v-col cols="12">
 				<v-card class="pa-3" outlined width="600px">
-					<v-card-title></v-card-title>
+					<v-card-title>Dodaj studenta</v-card-title>
 					<v-card-text>
 						<v-form></v-form>
 					</v-card-text>
