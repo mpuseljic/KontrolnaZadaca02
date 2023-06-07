@@ -27,7 +27,7 @@
 								dense
 								label="Broj dolazaka (maksimalno 15)"
 								clearble
-								:rules="[rules.required]"
+								:rules="[rules.required, rules.min]"
 								type="text"
 							
 								outlined></v-text-field>
@@ -54,7 +54,7 @@
 								dense
 								label="Kontinuirano pracenje(maksimalno 20 bodova)"
 								clearble
-								:rules="[rules.required]"
+								:rules="[rules.required, rules.minPracenje]"
 								type="text"
 			
 								outlined></v-text-field>
@@ -92,6 +92,8 @@
 </template>
 
 <script>
+import store from '@/store'
+
 export default {
 	name: "prvi-zadatak",
 	data() {
@@ -104,6 +106,18 @@ export default {
 			kontinuiranoPracenje: null,
 			rules: {
 				required: (value) => !!value || "Required.",
+				min:(value)=>{
+					if (value<11){
+						return "Not valid."
+
+					}
+			
+				},
+				minPracenje:(value)=>{
+					if(value<5)
+						return "Not valid."
+				},
+				
 			},
 		};
 	},
@@ -133,7 +147,7 @@ export default {
 		},
 		dodajStudenta() {
 			let noviStudent = {
-				//Dodaj propertyje
+				
 			};
 			//ovo ne diraj
 			let studenti = JSON.parse(localStorage.getItem("studenti"));
